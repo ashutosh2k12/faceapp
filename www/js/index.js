@@ -44,34 +44,6 @@ var app = {
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 		//Facebook App
-		//Config Plugin
-		var config = {
-			app_id      : '133722136790032',
-			secret      : '5f0932cb0ed55803f58c1ce386459b0f',
-			scope       : 'publish_stream,email',
-			host        : '', //App Domain ( Facebook Developer ).
-			onLogin     : _onLogin,
-			onLogout    : _onLogout
-		};
-		
-		//Login Facebook
-		$(document).FaceGap(config);
-		//Logout Facebook
-		//$(document).FaceGap('logout');
-		
-		//Callback Login
-		function _onLogin( event ){     
-			alert('status > '+event.status); // 1 - success, 0 - error
-			alert('data > '+event.data); //Object response (id, name, email, etc);
-			alert('token > '+event.token); // token user login
-			alert('message > '+event.message);  
-		}
-		
-		//Callback Logout
-		function _onLogout( event ){
-			alert('status > '+event.status); // 1 - success, 0 - error
-			alert('message > '+event.message);
-		}  
         console.log('Received Event: ' + id);
     }
 };
