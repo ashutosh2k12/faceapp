@@ -34,10 +34,21 @@
             <h1>PhoneGap</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+                <p class="event received">Device is Ready
+				<button onclick="login()">Login</button>
+		<button onclick="me()">Me</button>
+		<!--<button onclick="getSession()">Get session</button>-->
+		<button onclick="getLoginStatus()">Get login</button>
+		<button onclick="logout()">Logout</button>
+		<button onclick="facebookWallPost()">facebookWallPost</button>
+		<button onclick="publishStoryFriend()">friendstory</button>
+				</p>
             </div>
         </div>
         <script type="text/javascript" src="phonegap.js"></script>
+		<script src="cdv-plugin-fb-connect.js"></script>
+	    <!-- facebook js sdk -->
+		<script src="facebook-js-sdk.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
