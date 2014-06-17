@@ -1,5 +1,6 @@
 var friendIDs = [];
 var fdata;
+var geocoder;
 function me() {
 	FB.api('/me/friends', { fields: 'id, name, picture' },  function(response) {
 		   if (response.error) {
@@ -23,7 +24,43 @@ function me() {
 		}
 		   });
 }
-			
+
+var onGetCurrentPositionError = function(error) { 
+	  document.getElementById('data').innerHTML = "Couldn't get geo coords from device";
+} 
+
+ var onGetCurrentPositionSuccess = function(position) {
+	  document.getElementById('data').innerHTML = "lat: "+position.coords.latitude+" and Long: "+position.coords.longitude;
+      var lat = parseFloat(position.coords.latitude);
+      var lng = parseFloat(position.coords.longitude);
+                      
+                        
+      var latlng = new google.maps.LatLng(lat, lng);
+                        
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[0]) {
+            var arrAddress = results[0].address_components;
+            // iterate through address_component array
+            $.each(arrAddress, function (i, address_component) {
+              if (address_component.types[0] == "locality") {
+                console.log(address_component.long_name); // city
+             //   alert(address_component.long_name);
+				 var de = document.createElement('div');
+				 de.innerHTML = "<p>"+address_component.long_name+"</p>";
+				document.getElementById('data').appendChild(de);
+                return false; // break
+              }
+            });
+          } else {
+            alert("No results found");
+          }
+        } else {
+          alert("Geocoder failed due to: " + status);
+        }
+      });
+    }
+	
 function getLoginStatus() {
                 FB.getLoginStatus(function(response) {
                                   if (response.status == 'connected') {
@@ -91,7 +128,13 @@ var app = {
 				document.getElementById('data').innerHTML = "Connected to facebook!!";
 			}catch (e) {
                                       alert(e);
-             }			
+             }
+			
+	  geocoder = new google.maps.Geocoder();
+                      
+      $('#button-get-reverse-lookup').click(function(){
+        navigator.geolocation.getCurrentPosition(onGetCurrentPositionSuccess, onGetCurrentPositionError);
+      });
 		
     },
     // Update DOM on a Received Event
