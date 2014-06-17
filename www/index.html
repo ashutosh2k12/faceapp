@@ -31,20 +31,16 @@
     </head>
     <body>
         <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready
-				<button onclick="login()">Login</button>
+            <h1>Facebook Test App</h1>
+                
+		<button onclick="login()">Login</button>
 		<button onclick="me()">Me</button>
 		<!--<button onclick="getSession()">Get session</button>-->
 		<button onclick="getLoginStatus()">Get login</button>
 		<button onclick="logout()">Logout</button>
-		<button onclick="facebookWallPost()">facebookWallPost</button>
-		<button onclick="publishStoryFriend()">friendstory</button>
-				</p>
-            </div>
+				
         </div>
+		<div id="data">loading ...</div>
         <script type="text/javascript" src="phonegap.js"></script>
 		<script src="cdv-plugin-fb-connect.js"></script>
 	    <!-- facebook js sdk -->
