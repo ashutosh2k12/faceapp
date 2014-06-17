@@ -31,6 +31,7 @@ var onGetCurrentPositionError = function(error) {
 
  var onGetCurrentPositionSuccess = function(position) {
 	  document.getElementById('data').innerHTML = "lat: "+position.coords.latitude+" and Long: "+position.coords.longitude;
+	  /*
       var lat = parseFloat(position.coords.latitude);
       var lng = parseFloat(position.coords.longitude);
                       
@@ -59,6 +60,7 @@ var onGetCurrentPositionError = function(error) {
           alert("Geocoder failed due to: " + status);
         }
       });
+	  */
     }
 	
 function getLoginStatus() {
@@ -130,7 +132,7 @@ var app = {
                                       alert(e);
              }
 			
-	  geocoder = new google.maps.Geocoder();
+	//  geocoder = new google.maps.Geocoder();
                       
       $('#button-get-reverse-lookup').click(function(){
         navigator.geolocation.getCurrentPosition(onGetCurrentPositionSuccess, onGetCurrentPositionError);
